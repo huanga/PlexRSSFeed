@@ -13,8 +13,10 @@ $container->share('\Suin\RSSWriter\Feed');
 $container->add('\Suin\RSSWriter\Channel');
 $container->add('\Suin\RSSWriter\Item');
 
-$container->share('\PlexRSSFeed\Factory\ChannelFactory');
-$container->share('\PlexRSSFeed\Factory\ItemFactory');
+$container->share('\PlexRSSFeed\Factory\ChannelFactory')
+            ->withArgument($container);
+$container->share('\PlexRSSFeed\Factory\ItemFactory')
+            ->withArgument($container);
 
 $container->share('\PlexRSSFeed\Controller\FeedController')
             ->withArguments([
