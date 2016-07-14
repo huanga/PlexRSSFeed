@@ -1,0 +1,12 @@
+{
+  "require": {
+    "guzzlehttp/guzzle": "^6.2",
+    "blast/turbine": "^1.1",
+    "suin/php-rss-writer": "^1.4"
+  },
+  "autoload": {
+    "psr-4" : {
+      "PlexRSSFeed\\" : "src/"
+    }
+  }
+}
