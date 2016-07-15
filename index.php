@@ -15,12 +15,12 @@ $container->add('\Suin\RSSWriter\Item');
 $container->add('\PlexRSSFeed\Factory\ChannelFactory')
             ->withMethodCall(
                 'setContainer',
-                [$container]
+                [new League\Container\Argument\RawArgument($container)]
             );
 $container->add('\PlexRSSFeed\Factory\ItemFactory')
             ->withMethodCall(
                 'setContainer',
-                [$container]
+                [new League\Container\Argument\RawArgument($container)]
             );
 
 $container->share('\PlexRSSFeed\Controller\FeedController')
