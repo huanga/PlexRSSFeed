@@ -3,7 +3,6 @@ require_once './vendor/autoload.php';
 
 use Turbine\Application;
 
-
 $config = [];
 
 $app = new Application($config);
@@ -13,10 +12,16 @@ $container->share('\Suin\RSSWriter\Feed');
 $container->add('\Suin\RSSWriter\Channel');
 $container->add('\Suin\RSSWriter\Item');
 
-$container->share('\PlexRSSFeed\Factory\ChannelFactory')
-            ->withArgument($container);
-$container->share('\PlexRSSFeed\Factory\ItemFactory')
-            ->withArgument($container);
+$container->add('\PlexRSSFeed\Factory\ChannelFactory')
+            ->withMethodCall(
+                'setContainer',
+                [$container]
+            );
+$container->add('\PlexRSSFeed\Factory\ItemFactory')
+            ->withMethodCall(
+                'setContainer',
+                [$container]
+            );
 
 $container->share('\PlexRSSFeed\Controller\FeedController')
             ->withArguments([
@@ -25,7 +30,7 @@ $container->share('\PlexRSSFeed\Controller\FeedController')
                 '\PlexRSSFeed\Factory\ItemFactory'
             ]);
 
-$app->get('/{feed}/{items}', $container->get('\PlexRSSFeed\Controller\FeedController'));
+$app->get('/{feed}/{items}', '\PlexRSSFeed\Controller\FeedController');
 
 $app->run();
 

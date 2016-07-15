@@ -6,7 +6,6 @@ use League\Container\ContainerAwareTrait as LeagueContainerAwareTrait;
 class ItemFactory
 {
     use LeagueContainerAwareTrait;
-    use ContainerAwareTrait;
 
     /**
      * @return \Suin\RSSWriter\Item
