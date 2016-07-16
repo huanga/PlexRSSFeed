@@ -6,6 +6,11 @@ use Turbine\Application;
 $config = [];
 
 $app = new Application($config);
+if (getenv('DEVELOPMENT') === 'true') {
+    $app->getErrorHandler()->pushHandler(new \Whoops\Handler\PrettyPageHandler);
+    $app->setConfig('error', true);
+}
+
 $container = $app->getContainer();
 $container->share('\Suin\RSSWriter\Feed');
 
@@ -17,7 +22,7 @@ $container->add('\PlexRSSFeed\Factory\ItemFactory');
 
 $container->share('\PlexRSSFeed\Controller\FeedController')
             ->withArguments([
-                '\Suin\RSSWriter\Feed', 
+                '\Suin\RSSWriter\Feed',
                 '\PlexRSSFeed\Factory\ChannelFactory',
                 '\PlexRSSFeed\Factory\ItemFactory'
             ]);
