@@ -6,6 +6,7 @@ use League\Container\ContainerAwareTrait as LeagueContainerAwareTrait;
 class ChannelFactory
 {
     use LeagueContainerAwareTrait;
+    use ContainerAwareTrait;
 
     /**
      * @return \Suin\RSSWriter\Channel

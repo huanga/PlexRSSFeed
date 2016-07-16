@@ -22,15 +22,9 @@ $container->add('\Suin\RSSWriter\Channel');
 $container->add('\Suin\RSSWriter\Item');
 
 $container->add('\PlexRSSFeed\Factory\ChannelFactory')
-            ->withMethodCall(
-                'setContainer',
-                [new League\Container\Argument\RawArgument($container)]
-            );
+            ->withArgument(new League\Container\Argument\RawArgument($container));
 $container->add('\PlexRSSFeed\Factory\ItemFactory')
-            ->withMethodCall(
-                'setContainer',
-                [new League\Container\Argument\RawArgument($container)]
-            );
+            ->withArgument(new League\Container\Argument\RawArgument($container));
 
 
 $container->add('\PlexRSSFeed\Controller\FeedController')
