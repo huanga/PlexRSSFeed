@@ -40,5 +40,7 @@ class FeedController
         
         $feed->addChannel($channel);
         $response->getBody()->write($feed->render());
+
+        return $response;
     }
 }
