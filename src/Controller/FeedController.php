@@ -37,8 +37,8 @@ class FeedController
         $channel = $this->channelFactory->create();
         $channel->title('Plex RSS Feed ' . $args['feed']);
         $channel->description('An auto-generated RSS Feed for your Plex Media Server');
-        
-        $feed->addChannel($channel);
+        $channel->appendTo($feed);
+
         $response->getBody()->write($feed->render());
 
         return $response;
