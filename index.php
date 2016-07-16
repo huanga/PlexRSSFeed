@@ -14,20 +14,20 @@ if (getenv('DEVELOPMENT') === 'true') {
 $container = $app->getContainer();
 $container->share('\Suin\RSSWriter\Feed');
 
-$container->add('\Suin\RSSWriter\Channel')
+$container->add('\Suin\RSSWriter\Channel');
+$container->add('\Suin\RSSWriter\Item');
+
+$container->add('\PlexRSSFeed\Factory\ChannelFactory')
             ->withMethodCall(
                 'setContainer',
                 [new League\Container\Argument\RawArgument($container)]
             );
-$container->add('\Suin\RSSWriter\Item')
+$container->add('\PlexRSSFeed\Factory\ItemFactory')
             ->withMethodCall(
                 'setContainer',
                 [new League\Container\Argument\RawArgument($container)]
             );
 
-
-$container->add('\PlexRSSFeed\Factory\ChannelFactory');
-$container->add('\PlexRSSFeed\Factory\ItemFactory');
 
 $container->add('\PlexRSSFeed\Controller\FeedController')
             ->withArguments([
