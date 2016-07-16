@@ -3,7 +3,9 @@ require_once './vendor/autoload.php';
 
 use Turbine\Application;
 
-$config = [];
+$config = [
+    'baseDirectory' => '/PlexRSSFeed'
+];
 
 $app = new Application($config);
 if (getenv('DEVELOPMENT') === 'true') {
@@ -38,7 +40,7 @@ $container->add('\PlexRSSFeed\Controller\FeedController')
                 '\PlexRSSFeed\Factory\ItemFactory'
             ]);
 
-$app->get('/{feed}/{items}', '\PlexRSSFeed\Controller\FeedController::__invoke');
+$app->get($config['baseDirectory'] . '/{feed}/{items}', '\PlexRSSFeed\Controller\FeedController::__invoke');
 
 $app->run();
 
