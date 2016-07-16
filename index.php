@@ -14,7 +14,7 @@ if (getenv('DEVELOPMENT') === 'true') {
 }
 
 $container = $app->getContainer();
-$app->getContainer()->share(\Zend\Diactoros\Response\EmitterInterface::class, \PlexRSSFeed\RSSEmitter::class);
+$app->getContainer()->share(\Zend\Diactoros\Response\EmitterInterface::class, \PlexRSSFeed\PlexRSSFeedEmitter::class);
 
 $container->share('\Suin\RSSWriter\Feed');
 
